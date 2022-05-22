@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title>Javascriptを使った連立方程式</title>
+    </head>
+    <body>
+        <h1>連立方程式</h1>
+        <p>[[a, b],[c, d]] * [[x],[y]] ≡ [[e], [f]] (mod n)を解く</p>
+        <form name  = "form1">
+            a = <input type="text" id = "astr" /> <br>
+            b = <input type="text" id = "bstr" /> <br>
+            c = <input type="text" id = "cstr" /> <br>
+            d = <input type="text" id = "dstr" /> <br>
+            e = <input type="text" id = "estr" /> <br>
+            f = <input type="text" id = "fstr" /> <br>
+            n = <input type="text" id = "nstr" /> <br>
+            <br>
+            <button type="button" onclick="equations();">計算</button> <br>
+            <hr>
+            <textarea id = "calc" cols="70" rows="10"></textarea> <br>
+            x = <input type="text" id="xResult" /> <br>
+            y = <input type="text" id="yResult" /> <br>
+        </form>
+
+        <script type="text/javascript">
+            function equations() {
+                //配列の宣言
+                var matrix = new Array(); //行列
+                var matrixInverse = new Array();; //逆行列
+                var xy = new Array(); //xyの行列
+                var ef = new Array(); //efの行列
+                
+                //ユークリッドの経過配列宣言
+                var a = new Array();
+                var b = new Array();
+                var q = new Array(); //商
+                var r = new Array(); //余り
+
+                //入力された値を代入
+                matrix.push(Number(document.getElementById("astr").value));
+                matrix.push(Number(document.getElementById("bstr").value));
+                matrix.push(Number(document.getElementById("cstr").value));
+                matrix.push(Number(document.getElementById("dstr").value));
+                ef.push(Number(document.getElementById("estr").value));
+                ef.push(Number(document.getElementById("fstr").value));
+                var n = Number(document.getElementById("nstr").value);
+
+                //行列式|A|の計算
+                var A = findDeterminant(matrix, n);
+
+                //ユークリッドの互除法
+                euclid(a, b, q, r, n, A);
+
+                //一次合同方程式
+                //係数の配列
+                var ka = new Array(a.length);
+                var kb = new Array(b.length);
+                congruence(a, b, q, r, n, ka, kb);
+                //console.log(a);
+                //console.log(b);
+                //console.log(q);
+                //console.log(ka);
+                //console.log(kb);
+                
+                //逆行列
+                inverse(matrix, matrixInverse, ka, n);
+                xy.push((matrixInverse[0] * ef[0] + matrixInverse[1] * ef[1]) % n);
+                xy.push((matrixInverse[2] * ef[0] + matrixInverse[3] * ef[1]) % n);
+                xResult.value = xy[0];
+                yResult.value = xy[1];
+            }
+            
+            //行列式関数
+            function findDeterminant(matrix, n) {
+                calc.value = calc.value + "|A| = a * d - b * c = " + (((matrix[0] * matrix[3] - matrix[1] * matrix[2]) % n) + n) % n + "(mod " + n + ")\n";
+                //左上 * 右下 - 右上 * 左下
+                //n足しているのは負の余剰算対策
+                //console.log((matrix[0] * matrix[3] - matrix[1] * matrix[2]) % n);
+                return (((matrix[0] * matrix[3] - matrix[1] * matrix[2]) % n) + n) % n;
+            }
+
+            //ユークリッドの互除法関数
+            function euclid(a, b, q, r, n, A) {
+                i = 0;
+                a.push(A);
+                b.push(n);
+                q.push(A / n | 0);
+                r.push(A % n);
+                calc.value = calc.value + "ユークリッドの互除法\n" + a[i] + " = " + b[i] + "*" + q[i] + " + " + r[i] + "\n";
+                
+                while (r[i] != 0) {
+                    a.push(b[i]);
+                    b.push(r[i]);
+                    i++;
+                    q.push(a[i] / b[i] | 0);
+                    r.push(a[i] % b[i]);
+                    calc.value = calc.value + a[i] + " = " + b[i] + "*" + q[i] + " + " + r[i] + "\n";
+                }
+            }
+
+            //一次合同方程式関数
+            function congruence(a, b, q, r, n, ka, kb) {
+                //ループ関数
+                i = a.length - 2;
+                ka[i] = 1;
+                kb[i] = -q[i];
+                calc.value = calc.value + "一次合同式\n" + "1 = " + a[i] +"*" + ka[i] + " + " + b[i] + "*" + kb[i] + "\n";
+
+                while (i != 0) {
+                    i--;
+                    ka[i] = kb[i + 1];
+                    kb[i] = (a[i + 1] * ka[i + 1] + (-1) * b[i] * q[i] * kb[i + 1]) / a[i + 1];
+                    calc.value = calc.value + "1 = " + a[i] +"*" + ka[i] + " + " + b[i] + "*" + kb[i] + "\n"; 
+                }
+                calc.value = calc.value + "|A|Inverse ≡ " + ka[0] + "(mod " + n + ")\n";
+            }
+
+            //逆行列関数
+            function inverse(matrix, matrixInverse, ka, n) {
+                //行列*|A|Inverse
+                matrixInverse[0] = matrix[3] * ka[0] % n;
+                matrixInverse[1] = (-matrix[1] * ka[0] % n + n) % n; //nを足しているのは負の余剰算対策
+                matrixInverse[2] = (-matrix[2] * ka[0] % n + n) % n;
+                matrixInverse[3] = matrix[0] * ka[0] % n;
+                calc.value = calc.value + "逆行列\n" + "|A|Inverse ≡ [[" + matrixInverse[0] + ", " + matrixInverse[1] + "], [" + matrixInverse[2] + ", " + matrixInverse[3] + "]] (mod " + n + ")\n";
+            }
+        </script>
+    </body>
+</html>
