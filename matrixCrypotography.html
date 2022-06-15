@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>暗号</title>
+</head>
+<body>
+    <h1>行列を用いた暗号</h1>
+
+    <table border="1" width = "70%">
+        <tr align="center">
+            <th>文字</th>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+            <td>D</td>
+            <td>H</td>
+            <td>I</td>
+            <td>J</td>
+            <td>K</td>
+            <td>L</td>
+            <td>M</td>
+            <td>N</td>
+            <td>O</td>
+            <td>P</td>
+            <td>Q</td>
+            <td>R</td>
+            <td>S</td>
+            <td>T</td>
+            <td>U</td>
+            <td>V</td>
+            <td>W</td>
+            <td>X</td>
+            <td>Y</td>
+            <td>Z</td>
+        </tr>
+        <tr align="center">
+            <th>数値</th>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+            <td>25</td>
+        </tr>
+    </table>
+
+    <p>一致している平文と暗号文の数値を入力</p>
+
+    <div>
+        <h2>平文</h2>
+        <form id="plain">
+            <!--<input type="button" value="追加" class="formAdd">
+            <input type="button" value="全削除" class="formRemove"><br>-->
+            <input type="text" class="pInput">
+            <input type="text" class="pInput">
+            <input type="text" class="pInput">
+            <input type="text" class="pInput">
+        </form>
+    </div>
+
+    <div>
+        <h2>暗号文</h2>
+        <form id="crypt">
+            <!--<input type="button" value = "追加" class="formAdd">
+            <input type="button" value="全削除" class="formRemove"><br>-->
+            <input type="text" class="cInput">
+            <input type="text" class="cInput">
+            <input type="text" class="cInput">
+            <input type="text" class="cInput">
+        </form>
+    </div>
+
+    <div>
+        <h2>解読したい暗号文</h2>
+        <form id="userCrypt">
+            <input type="button" value="追加" id="formAdd">
+            <input type="button" value="全削除" id="formRemove"><br>
+            <input type="text" class="uInput">
+            <input type="text" class="uInput">
+        </form>
+    </div>
+
+    <form >
+        <input type="button" value="計算" id="calc">
+    </form>
+
+    <hr>
+
+    <div>
+        <h2>結果</h2>
+        <p id="result"></p>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
