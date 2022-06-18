@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>informationMath</title>
+</head>
+<body>
+    <nav></nav>
+
+    <section>
+        <h2>RSA暗号</h2>
+        <p>素数p,qの入力</p>
+        <form id="pqForm">
+            <input type="text" id="pInput" placeholder="p">
+            <p id="pCheck"></p>
+
+            <input type="text" id="qInput" placeholder="q">
+            <p id="qCheck"></p>
+        </form>
+
+        <br>
+
+        <h3>暗号化</h3>
+        <p>元となる文字のテンプレート、平文、公開鍵n,eを入力</p>
+        <form>
+            <input type="text" id="cryptTempleteInput" placeholder="例:ABCDEFGHIJKLMNOPQRSTUVWXYZ"><br>
+            <input type="text" id="cryptPlainInput"    placeholder="平文"><br>
+            <input type="text" id="cryptNInput"        placeholder="n"><br>
+            <input type="text" id="cryptEInput"        placeholder="e"><br>
+            <input type="button" id="findCrypt" value="暗号化"><br>
+            <p id="resultCrypt"></p>
+        </form>
+
+        <h3>復号化</h3>
+        <p>元となる文字のテンプレート、暗号文、n,e,lを入力</p>
+        <form>
+            <input type="text" id="plainTempleteInput" placeholder="例:ABCDEFGHIJKLMNOPQRSTUVWXYZ"><br>
+            <input type="text" id="plainCryptInput"    placeholder="暗号文"><br>
+            <input type="text" id="plainNInput"        placeholder="n"><br>
+            <input type="text" id="plainEInput"        placeholder="e"><br>
+            <input type="text" id="plainLInput"        placeholder="l"><br>
+            <input type="button" id="findPlain" value="復号化"><br>
+            <p id="resultPlain"></p>
+        </form>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
