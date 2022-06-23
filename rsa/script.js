@@ -43,12 +43,12 @@ $("#findPlain").on("click", function(){
     let l            = $("#plainLInput").val();
 
     extGCD(e, l, x, y);
-    let d               = x.value
+    let d               = (x.value + l) % l;
     let cryptText       = decimalConversion(userText, textTemplete);
     let plainNumber     = BigInt(cryptText) ** BigInt(d) % BigInt(n);
     let plainText       = baseConversion(plainNumber, textTemplete);
     const resultstring  = `平文:${plainText}`
-    console.log(resultstring);
+    //console.log(resultstring);
     $("#resultPlain").text(resultstring);
 });
 
