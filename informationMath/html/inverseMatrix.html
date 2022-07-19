@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="js">
+<head>
+    <meta charset="UTF-8">
+    <title>逆行列</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="GCDandLCM.html">最大公約数と最小公倍数</a></li>
+            <li><a href="euclid.html">ユークリッドの互除法</a></li>
+            <li><a href="identerminateEquation.html">一次不定方程式</a></li>
+            <li><a href="congruenceEquation.html">一次合同方程式</a></li>
+            <li><a href="inverseMatrix.html">逆行列</a></li>
+            <li><a href="simultaneousEquation.html">連立方程式</a></li>
+            <li><a href="matrixCrypotography.html">行列を用いた暗号</a></li>
+            <li><a href="rsa.html">RSA暗号</a></li>
+            <li><a href="primeFactrization.html">素因数分解</a></li>
+        </ul>        
+    </nav>
+    
+    <h1>逆行列</h1>
+    <p>[[a,b],[c,d]] (mod n)の逆行列を求める</p>
+
+    <form>
+        <input type="text" id="aInput" placeholder="a"><br>
+        <input type="text" id="bInput" placeholder="b"><br>
+        <input type="text" id="cInput" placeholder="c"><br>
+        <input type="text" id="dInput" placeholder="d"><br>
+        <input type="text" id="nInput" placeholder="n">
+        <input type="button" id="find" value="計算">
+    </form>
+
+    <div id="result">
+        <p>結果</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="../js/inverseMatrix.js"></script>
+</body>
+</html>
